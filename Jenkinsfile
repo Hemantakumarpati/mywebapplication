@@ -11,19 +11,17 @@ pipeline {
         git 'https://github.com/Hemantakumarpati/mywebapplication.git'
       }
     }
-    stage('Compile Package and Create war file') {
-      steps {
-        sh "mvn package"
-      }
-    }
-    /*stage('Sonar'){
-        try {
-            sh "mvn sonar:sonar"
-        } catch(error){
-            echo "The sonar server could not be reached ${error}"
+    stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    // Optionally use a Maven environment you've configured already
+                    //withMaven(maven:'Maven 3.5') {
+                        sh 'mvn clean package sonar:sonar'
+                    //}
+                }
+            }
         }
-     }*/
-   stage('Building image') {
+    stage('Building image') {
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -38,7 +36,7 @@ pipeline {
                 sh 'docker --version'
             }
         }*/
-    stage('Deploy Image') {
+    /*stage('Deploy Image') {
       steps{
         script {
           //withCredentials([usernamePassword( credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -49,7 +47,7 @@ pipeline {
           sh "/home/hemant_pati/mywebapp.sh ${BUILD_NUMBER}"
             //}
        // }
-      }
+      }*/
     }
   }
  }
