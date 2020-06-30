@@ -36,7 +36,7 @@ pipeline {
                 sh 'docker --version'
             }
         }*/
-    /*stage('Deploy Image') {
+    stage('Deploy Image') {
       steps{
         script {
           //withCredentials([usernamePassword( credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -47,7 +47,7 @@ pipeline {
           sh "/home/hemant_pati/mywebapp.sh ${BUILD_NUMBER}"
             //}
        // }
-      }*/
+      }
     }
   }
  }
