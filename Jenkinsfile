@@ -44,9 +44,9 @@ pipeline {
           //withCredentials([usernamePassword( credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
           //docker.withRegistry('https://registry.hub.docker.com', 'dockeruser') {
           //sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-          //dockerImage.push("$BUILD_NUMBER")
+          //dockerImage.push("$BUILD_NUMBER")mywebapp
           //dockerImage.push("latest")
-          sh "/home/hemant_pati/dockerpush.sh ${BUILD_NUMBER}"
+          sh "/home/hemant_pati/mywebapp.sh ${BUILD_NUMBER}"
             //}
        // }
       }
