@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "hemantakumarpati/onlinebookstore"
+    registry = "hemantakumarpati/mywebapplication"
     registryCredential = 'dockeruser'
     dockerImage = ''
  }
@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/Hemantakumarpati/OnlineBookStore.git'
+        git 'https://github.com/Hemantakumarpati/mywebapplication.git'
       }
     }
     stage('Compile Package and Create war file') {
